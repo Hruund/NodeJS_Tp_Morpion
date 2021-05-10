@@ -50,26 +50,36 @@ function setSign(plate, x, y, sign) {
 }
 
 function isThereAWinner(plate) {
-  const state = getBox(plate, x, y),
+  const plateau = initPlate(),
 
   matches = ["xxx", "ooo"],
 
-  rows = [
-    state.a0 + state.a1 + state.a2,
-    state.b0 + state.b1 + state.b2,
-    state.c0 + state.c1 + state.c2,
-    state.a0 + state.b1 + state.c2,
-    state.a2 + state.b1 + state.c0,
-    state.a0 + state.b0 + state.c0,
-    state.a1 + state.b1 + state.c1,
-    state.a2 + state.b2 + state.c2
-  ];
+  results = [
+    // Rows
+    plateau[0][0] + plateau[0][1] + plateau[0][2], //row0
+    plateau[1][0] + plateau[1][1] + plateau[1][2], //row 1 
+    plateau[2][0] + plateau[2][1] + plateau[2][2], //row 1
 
-  for (const i = 0; i < rows.length; i++) {
-    if (rows[i] === matches[0] || rows[i] === matches[1]) {
+    //columns
+    plateau[0][0] + plateau[1][0] + plateau[2][0], //column0
+    plateau[0][1] + plateau[1][1] + plateau[2][1], //column0
+    plateau[0][2] + plateau[1][2] + plateau[2][2], //column0
+
+    //diagonals
+    plateau[0][0] + plateau[1][1] + plateau[2][2], //diagonal1
+    plateau[2][0] + plateau[1][1] + plateau[0][2], //diagonal1
+  ]
+
+  for(i= 0; i< results.length; i++){
+    found = matches.find(result => result == results[i])
+
+    // Si le pattern est retrouvé, il y a un cas de victoire
+    if(found !== "undefined"){
+      //on retourne que c'est la victoire, pas besoin d'aller plus loin
       return true;
     }
   }
+  return false;
 }
 
 function isGameNull(plate) {
