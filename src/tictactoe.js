@@ -55,7 +55,7 @@ function isThereAWinner(plate) {
   matches = ["xxx", "ooo"],
 
   results = [
-    // Rows
+    //rows
     plateau[0][0] + plateau[0][1] + plateau[0][2], //row0
     plateau[1][0] + plateau[1][1] + plateau[1][2], //row 1 
     plateau[2][0] + plateau[2][1] + plateau[2][2], //row 1
@@ -73,9 +73,8 @@ function isThereAWinner(plate) {
   for(i= 0; i< results.length; i++){
     found = matches.find(result => result == results[i])
 
-    // Si le pattern est retrouvé, il y a un cas de victoire
     if(found !== "undefined"){
-      //on retourne que c'est la victoire, pas besoin d'aller plus loin
+
       return true;
     }
   }

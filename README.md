@@ -2,6 +2,8 @@
 
 > Yohann Gach, William Vasselin
 
+git : https://github.com/Hruund/NodeJS_Tp_Morpion.git
+
 ## Description
 
 Implémentation du **Tic Tac Toe** en **Node.js** jouable en ligne (serveur).

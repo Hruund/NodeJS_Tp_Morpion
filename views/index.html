@@ -1,22 +1,52 @@
 <head>
-    <script src="../src/index.js"></script>
+    <script src="../src/indexServer.js"></script>
+    <script src="../src/indexClient.js"></script>
 </head>
 <style>
 body {
     text-align: center;
 }
 </style>
-<div class="connexion">
-    <form action="" method="get" class="form-example">
-        <div class="form-example">
-            <label for="pseudo">Entrez un pseudo: </label>
-            <input type="text" name="pseudo" id="pseudo" required>
-        </div>
-        <div class="form-example">
-            <input type="submit" value="Rejoindre une partie">
-        </div>
-        <div class="form-example">
-            <input type="submit" value="Créer une partie">
-        </div>
-    </form>
-</div>
+<body>
+    <div class="connexion">
+        <form action="game.html" method="get">
+            <div>
+                <label for="pseudo">Entrez un pseudo: </label>
+                <input type="text" name="pseudo" id="pseudo" required>
+            </div>
+            <div>
+                <input type="submit" value="Rejoindre une partie" onClick="show()">
+            </div>
+    
+        </form>
+    
+        <form action="game.html" method="get">
+            <div>
+                <label for="pseudo">Entrez un pseudo: </label>
+                <input type="text" name="pseudo" id="pseudo" required>
+            </div>
+            <div>
+                <input type="submit" value="Créer une partie">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function show() {
+            
+    
+            const pseudo = document.getElementById("pseudo").value;
+    
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:8080/setPseudo?pseudo='+pseudo;
+            Http.open("GET", url);
+            Http.send();
+    
+            Http.onreadystatechange = (e) => {
+                console.log(Http.responseText)
+            }
+    }
+    </script>
+</body>
+
+
