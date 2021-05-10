@@ -50,8 +50,26 @@ function setSign(plate, x, y, sign) {
 }
 
 function isThereAWinner(plate) {
-  return !isGameNull(plate) && !plate.reduce((state, box) => box === EMPTY_BOX || state, false);
-  console.log('Implement it for next monday based on the other function');
+  const state = getBox(plate, x, y),
+
+  matches = ["xxx", "ooo"],
+
+  rows = [
+    state.a0 + state.a1 + state.a2,
+    state.b0 + state.b1 + state.b2,
+    state.c0 + state.c1 + state.c2,
+    state.a0 + state.b1 + state.c2,
+    state.a2 + state.b1 + state.c0,
+    state.a0 + state.b0 + state.c0,
+    state.a1 + state.b1 + state.c1,
+    state.a2 + state.b2 + state.c2
+  ];
+
+  for (const i = 0; i < rows.length; i++) {
+    if (rows[i] === matches[0] || rows[i] === matches[1]) {
+      return true;
+    }
+  }
 }
 
 function isGameNull(plate) {
